@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+# MS SQL SERVER **************************************************
+  mssql_qa:
+    container_name: mssql_qa
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=Pass@word33
+      - ACCEPT_EULA=Y
+    ports:
+      - "15787:1433"
+    volumes:
+      - ./sqlsystem_qa:/var/opt/mssql/
+
+
+# POSTGRES **************************************************************
+  postgres_qa:
+    container_name: postgres_qa
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Pass@word33
+    ports:
+      - "14787:5432"
+    volumes:
+      - ./pgdata_qa:/var/lib/postgresql/data
+
+
+volumes:
+  mssqldata_qa:
+  pgdata_qa:

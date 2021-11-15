@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+# MS SQL SERVER **************************************************
+  mssql_test:
+    container_name: mssql_test
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=Pass@word22
+      - ACCEPT_EULA=Y
+    ports:
+      - "15786:1433"
+    volumes:
+      - ./sqlsystem_test:/var/opt/mssql/
+
+# POSTGRES **************************************************************
+  postgres_test:
+    container_name: postgres_test
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Pass@word22
+    ports:
+      - "14786:5432"
+    volumes:
+      - ./pgdata_test:/var/lib/postgresql/data
+
+
+volumes:
+  mssqldata_test:
+  pgdata_test:

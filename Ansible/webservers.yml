@@ -1,0 +1,7 @@
+# file: webservers.yml
+---
+- hosts: webservers
+  gather_facts: no
+  tasks:
+    - name: Install Chocolatey on Windows
+      win_chocolatey: name=procexp state=present

@@ -1,0 +1,5 @@
+# file: site.yml
+# Imports other playbooks from root directory
+
+- import_playbook: webservers.yml
+- import_playbook: dbservers.yml
